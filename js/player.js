@@ -1,8 +1,9 @@
 class Player {
-  constructor(gameScreen) {
+  constructor(gameScreen, bulletController) {
     this.gameScreen = gameScreen;
-    this.left = 100;
-    this.top = 65;
+    this.left = 650;
+    this.top = 550;
+    this.bulletController = bulletController;
     this.height = 280;
     this.width = 230;
     this.directionX = 0;
@@ -14,25 +15,21 @@ class Player {
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
 
-    this.element.style.left = `${this.left}vw`;
-    this.element.style.top = `${this.top}vh`;
+    this.element.style.left = `${this.left}px`;
+    this.element.style.top = `${this.top}px`;
 
     this.gameScreen.appendChild(this.element);
   }
 
   move() {
-    if (this.left >= 60) {
-      this.left += this.directionX;
-    } else {
-      this.left = 60;
-    }
-    if (this.left <= 440 - this.width) {
-      this.left += this.directionX;
-    } else {
-      this.left = 440 - this.width;
-    }
-
+    this.left += this.directionX;
     this.updatePosition();
+  }
+
+  shoot() {
+    const speed = 5;
+    const delay = 7;
+    this.bulletController.shoot(this, speed, delay);
   }
   updatePosition() {
     this.element.style.left = `${this.left}px`;

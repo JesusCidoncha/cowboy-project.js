@@ -1,10 +1,10 @@
 class Enemy {
   constructor(gameScreen) {
     this.gameScreen = gameScreen;
-    this.top = 65;
-    this.height = -25;
-    this.width = 40;
-    this.left = Math.floor(Math.random() * (440 - this.width - 60) + 60);
+    this.top = 550;
+    this.height = 280;
+    this.width = 230;
+    this.left = 600;
 
     this.element = document.createElement("img");
     this.element.src = "../images/enemy.jpg";
@@ -14,12 +14,12 @@ class Enemy {
     this.element.style.width = `${this.width}px`;
 
     this.element.style.left = `${this.left}px`;
-    this.element.style.top = `${this.top}vh`;
+    this.element.style.top = `${this.top}px`;
     this.gameScreen.appendChild(this.element);
   }
 
   move() {
-    this.right += 1;
+    this.left -= 1;
     this.updatePosition();
   }
   updatePosition() {

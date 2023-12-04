@@ -11,18 +11,29 @@ class Game {
     this.score = 0;
     this.lives = 3;
     this.isGameOver = false;
+    this.bulletController = null; // Add this line
   }
+
   start() {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.gameScreen.style.height = `${this.height}vh`;
-    this.gameScreen.style.width = `${this.width}vh`;
-    this.player = new Player(this.gameScreen);
+    this.gameScreen.style.width = `${this.width}vw`;
+
+    // Create the BulletController once and assign it to this.bulletController
+
+    this.bulletController = new BulletController(this.gameScreen);
+
+    // Pass the existing BulletController to the Player constructor
+    this.player = new Player(this.gameScreen, this.bulletController);
+
     this.gameLoop();
   }
   gameLoop() {
     this.player.move();
+    console.log("Checking bullet movement in game loop");
 
+    this.bulletController.moveBullets();
     const nextEnemies = [];
     this.enemies.forEach((currentEnemy) => {
       currentEnemy.move();

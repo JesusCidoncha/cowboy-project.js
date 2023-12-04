@@ -30,7 +30,12 @@ window.addEventListener("load", () => {
       console.log("go right");
       game.player.directionX = 1;
     }
+    if (event.code === "Space") {
+      console.log("shoot");
+      game.player.shoot();
+    }
   });
+
   document.addEventListener("keyup", (event) => {
     if (
       event.code === "ArrowLeft" ||

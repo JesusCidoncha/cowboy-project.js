@@ -21,8 +21,10 @@ class Bullet {
     return this.top <= -this.height;
   }
   move() {
+    // Update the bullet's left position based on its speed (horizontal movement)
     this.left += this.speed;
 
+    // Update the bullet's HTML element position
     this.element.style.left = `${this.left}px`;
   }
   didCollide(enemy) {

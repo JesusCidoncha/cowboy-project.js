@@ -24,12 +24,17 @@ window.addEventListener("load", () => {
 
     if (event.code === "ArrowLeft" || event.code === "KeyA") {
       game.player.directionX = -1;
+      game.player.element.style.transform = "rotate(0deg)";
     }
+
     if (event.code === "ArrowRight" || event.code === "KeyD") {
       game.player.directionX = 1;
+      game.player.element.style.transform = "scaleX(-1)";
     }
-    if (event.code === "Space") {
+
+    if (event.code === "Space" && !game.bulletController.isSpacebarPressed) {
       game.player.shoot();
+      game.bulletController.isSpacebarPressed = true;
     }
   });
 
@@ -41,6 +46,10 @@ window.addEventListener("load", () => {
       event.code === "KeyD"
     ) {
       game.player.directionX = 0;
+    }
+
+    if (event.code === "Space") {
+      game.bulletController.isSpacebarPressed = false;
     }
   });
 });

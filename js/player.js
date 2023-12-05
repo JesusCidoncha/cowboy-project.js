@@ -29,7 +29,22 @@ class Player {
   shoot() {
     const speed = 5;
     const delay = 7;
-    this.bulletController.shoot(this, speed, delay);
+
+    // Determine the direction of the bullet based on the player's orientation
+    const bulletDirection =
+      this.element.style.transform === "scaleX(-1)"
+        ? 1 // If facing right, shoot right
+        : -1; // If facing left, shoot left
+
+    const bullet = new Bullet(
+      this.left + this.width / 2,
+      this.top,
+      speed * bulletDirection
+    );
+
+    this.gameScreen.appendChild(bullet.element);
+    this.bulletController.bullets.push(bullet);
+    this.timerTillNextBullet = delay;
   }
   updatePosition() {
     this.element.style.left = `${this.left}px`;

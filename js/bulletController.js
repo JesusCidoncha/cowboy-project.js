@@ -5,19 +5,28 @@ class BulletController {
 
   bullets = [];
   timerTillNextBullet = 0;
-  moveBullets() {
-    this.bullets.forEach((bullet) => {
+
+  moveBullets(enemies) {
+    this.bullets.forEach((bullet, bulletIndex) => {
       bullet.move();
-      console.log("Checking collision for bullet");
-      if (this.isBulletOffScreen(bullet)) {
+      console.log("Checking collision for bullet", bulletIndex);
+
+      const collidedEnemy = enemies.find((enemy) => bullet.didCollide(enemy));
+
+      if (collidedEnemy) {
+        // Remove the bullet visually
         this.gameScreen.removeChild(bullet.element);
 
-        const index = this.bullets.indexOf(bullet);
-        if (index !== -1) {
-          this.bullets.splice(index, 1);
-        }
+        // Remove the collided enemy visually
+        this.gameScreen.removeChild(collidedEnemy.element);
       }
     });
+
+    // Filter out bullets that went off-screen
+    this.bullets = this.bullets.filter(
+      (bullet) =>
+        !bullet.isBulletOffScreen() && bullet.element.style.display !== "none"
+    );
   }
 
   shoot(player, speed, delay) {
@@ -40,10 +49,14 @@ class BulletController {
   }
 
   didCollide(enemy) {
+    console.log("Checking collisions in didCollide method");
     return this.bullets.some((bullet) => {
       if (bullet.didCollide(enemy)) {
-        // Log a message to check if didCollide is being called
         console.log("Bullet collided with enemy");
+
+        // Log additional information for debugging
+        console.log("Bullet Rect:", bullet.element.getBoundingClientRect());
+        console.log("Enemy Rect:", enemy.element.getBoundingClientRect());
 
         this.bullets.splice(this.bullets.indexOf(bullet), 1);
         return true;

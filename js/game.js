@@ -31,13 +31,11 @@ class Game {
   }
   gameLoop() {
     this.player.move();
-    console.log("Checking bullet movement in game loop");
-
-    this.bulletController.moveBullets();
+    this.bulletController.moveBullets(this.enemies);
     const nextEnemies = [];
     this.enemies.forEach((currentEnemy) => {
       currentEnemy.move();
-      if (currentEnemy.top < 640) {
+      if (currentEnemy.left > 0) {
         if (this.player.didCollide(currentEnemy)) {
           this.lives -= 1;
           document.getElementById("lives").innerText = `${this.lives}`;

@@ -23,15 +23,12 @@ window.addEventListener("load", () => {
     event.preventDefault();
 
     if (event.code === "ArrowLeft" || event.code === "KeyA") {
-      console.log("go left");
       game.player.directionX = -1;
     }
     if (event.code === "ArrowRight" || event.code === "KeyD") {
-      console.log("go right");
       game.player.directionX = 1;
     }
     if (event.code === "Space") {
-      console.log("shoot");
       game.player.shoot();
     }
   });

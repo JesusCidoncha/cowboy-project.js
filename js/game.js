@@ -11,7 +11,7 @@ class Game {
     this.score = 0;
     this.lives = 3;
     this.isGameOver = false;
-    this.bulletController = null; // Add this line
+    this.bulletController = null;
   }
 
   start() {
@@ -20,11 +20,7 @@ class Game {
     this.gameScreen.style.height = `${this.height}vh`;
     this.gameScreen.style.width = `${this.width}vw`;
 
-    // Create the BulletController once and assign it to this.bulletController
-
     this.bulletController = new BulletController(this.gameScreen);
-
-    // Pass the existing BulletController to the Player constructor
     this.player = new Player(this.gameScreen, this.bulletController);
 
     this.gameLoop();
@@ -33,9 +29,15 @@ class Game {
     this.player.move();
     this.bulletController.moveBullets(this.enemies);
     const nextEnemies = [];
+
     this.enemies.forEach((currentEnemy) => {
       currentEnemy.move();
-      if (currentEnemy.left > 0) {
+
+      // Check if enemy is still on the screen
+      if (
+        currentEnemy.left > -currentEnemy.width &&
+        currentEnemy.left < this.gameScreen.offsetWidth
+      ) {
         if (this.player.didCollide(currentEnemy)) {
           this.lives -= 1;
           document.getElementById("lives").innerText = `${this.lives}`;
@@ -50,17 +52,21 @@ class Game {
           nextEnemies.push(currentEnemy);
         }
       } else {
+        currentEnemy.element.remove();
         this.score += 10;
         document.getElementById("score").innerText = `${this.score}`;
-        currentEnemy.element.remove();
       }
     });
+
     this.enemies = nextEnemies;
 
-    if (this.animateId % 300 === 0) {
-      this.enemies.push(new Enemy(this.gameScreen));
+    if (this.animateId % 130 === 0) {
+      console.log("Spawning new enemy");
+      const spawnFromLeft = Math.random() < 0.5;
+      this.enemies.push(new Enemy(this.gameScreen, spawnFromLeft));
     }
 
+    // Continue the game loop
     this.animateId = requestAnimationFrame(() => {
       this.gameLoop();
     });

@@ -7,16 +7,13 @@ class BulletController {
   timerTillNextBullet = 0;
 
   moveBullets(enemies) {
-    this.bullets.forEach((bullet, bulletIndex) => {
+    this.bullets.forEach((bullet) => {
       bullet.move();
-      console.log("Checking collision for bullet", bulletIndex);
 
       enemies.forEach((enemy) => {
         if (bullet.didCollide(enemy)) {
-          // Remove the bullet visually
           this.gameScreen.removeChild(bullet.element);
 
-          // Remove the collided enemy visually
           this.gameScreen.removeChild(enemy.element);
         }
       });

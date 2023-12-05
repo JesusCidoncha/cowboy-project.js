@@ -19,7 +19,6 @@ class Enemy {
   }
 
   move() {
-    console.log("Moving enemy");
     this.left -= 1;
     this.updatePosition();
   }
@@ -38,14 +37,11 @@ class Enemy {
       bulletRect.bottom > enemyRect.top;
 
     if (isColliding) {
-      console.log("Bullet collided with enemy");
-
-      // Hide the enemy visually
       this.element.style.display = "none";
 
-      return true; // Indicate collision to the caller
+      return true;
     }
 
-    return false; // No collision
+    return false;
   }
 }

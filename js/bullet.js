@@ -1,7 +1,7 @@
 class Bullet {
   constructor(left, top, speed) {
-    this.left = left; // Keep the left position same as the player
-    this.top = top; // Keep the top position same as the player
+    this.left = left;
+    this.top = top;
     this.speed = speed;
 
     this.width = 20;
@@ -14,7 +14,6 @@ class Bullet {
     this.element.style.height = `${this.height}px`;
     this.element.style.backgroundColor = this.color;
 
-    // Set initial position based on the player's position
     this.element.style.left = `${this.left}px`;
     this.element.style.top = `${this.top + 95}px`;
   }
@@ -22,10 +21,8 @@ class Bullet {
     return this.top <= -this.height;
   }
   move() {
-    // Update the bullet's left position based on its speed (horizontal movement)
     this.left += this.speed;
 
-    // Update the bullet's HTML element position
     this.element.style.left = `${this.left}px`;
   }
   didCollide(enemy) {
@@ -39,22 +36,16 @@ class Bullet {
       bulletRect.bottom > enemyRect.top;
 
     if (isColliding) {
-      console.log("Bullet collided with enemy");
-
-      // Hide the bullet visually
       this.element.style.display = "none";
-
-      return true; // Indicate collision to the caller
+      return true;
     }
 
-    // Check if the bullet is off-screen
     if (this.isBulletOffScreen()) {
-      // Hide the bullet visually
       this.element.style.display = "none";
 
-      return true; // Indicate off-screen to the caller
+      return true;
     }
 
-    return false; // No collision or off-screen
+    return false;
   }
 }

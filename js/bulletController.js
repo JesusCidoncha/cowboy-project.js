@@ -14,15 +14,11 @@ class BulletController {
       const collidedEnemy = enemies.find((enemy) => bullet.didCollide(enemy));
 
       if (collidedEnemy) {
-        // Remove the bullet visually
         this.gameScreen.removeChild(bullet.element);
-
-        // Remove the collided enemy visually
         this.gameScreen.removeChild(collidedEnemy.element);
       }
     });
 
-    // Filter out bullets that went off-screen
     this.bullets = this.bullets.filter(
       (bullet) =>
         !bullet.isBulletOffScreen() && bullet.element.style.display !== "none"
@@ -49,15 +45,8 @@ class BulletController {
   }
 
   didCollide(enemy) {
-    console.log("Checking collisions in didCollide method");
     return this.bullets.some((bullet) => {
       if (bullet.didCollide(enemy)) {
-        console.log("Bullet collided with enemy");
-
-        // Log additional information for debugging
-        console.log("Bullet Rect:", bullet.element.getBoundingClientRect());
-        console.log("Enemy Rect:", enemy.element.getBoundingClientRect());
-
         this.bullets.splice(this.bullets.indexOf(bullet), 1);
         return true;
       }

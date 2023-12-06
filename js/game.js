@@ -12,7 +12,6 @@ class Game {
     this.lives = 3;
     this.isGameOver = false;
     this.bulletController = null;
-    this.deathTheme = new Audio("./audio/death-theme.mp3");
   }
 
   start() {
@@ -46,8 +45,8 @@ class Game {
 
           if (this.lives === 0) {
             this.isGameOver = true;
-            this.introTheme.pause();
-            this.deathTheme.play();
+            mainTheme.pause();
+            deathTheme.play();
             this.gameScreen.style.display = "none";
             this.gameEndScreen.style.display = "block";
             document.getElementById("stats-container").style.display = "none";

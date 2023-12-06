@@ -2,14 +2,14 @@ class Player {
   constructor(gameScreen, bulletController) {
     this.gameScreen = gameScreen;
     this.left = 650;
-    this.top = 500;
+    this.top = 700;
     this.bulletController = bulletController;
     this.height = 280;
     this.width = 230;
     this.directionX = 0;
     this.shootingSound = new Audio("./audio/shot-sound.mp3");
     this.element = document.createElement("img");
-    this.element.src = "../images/sheriff.avif";
+    this.element.src = "./images/sheriff.avif";
     this.element.style.position = "absolute";
 
     this.element.style.height = `${this.height}px`;

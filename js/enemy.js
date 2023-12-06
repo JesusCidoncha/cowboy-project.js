@@ -3,7 +3,7 @@ class Enemy {
     this.gameScreen = gameScreen;
     this.spawnFromLeft = spawnFromLeft;
     // Initialize other properties
-    this.top = 450;
+    this.top = 700;
     this.height = 280;
     this.width = 250;
     this.left = this.spawnFromLeft ? -this.width : this.gameScreen.offsetWidth;
@@ -18,7 +18,7 @@ class Enemy {
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
     this.element.style.top = `${this.top}px`;
-    this.element.style.backgroundImage = `url(../images/${selectedBackground})`;
+    this.element.style.backgroundImage = `url(./images/${selectedBackground})`;
     this.element.style.backgroundSize = "cover";
     this.element.style.backgroundRepeat = "no-repeat";
     this.element.style.backgroundPosition = "center";

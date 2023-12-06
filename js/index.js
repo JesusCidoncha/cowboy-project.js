@@ -2,15 +2,13 @@ window.addEventListener("load", () => {
   const startButton = document.getElementById("start-button");
   const restartButton = document.getElementById("restart-button");
   const game = new Game();
-  this.mainTheme = new Audio("./audio/main-theme.mp3");
-  this.introTheme = new Audio("./audio/intro-theme.mp3");
-  this.deathTheme = new Audio("./audio/death-theme.mp3");
-  this.introTheme.play();
+  const mainTheme = new Audio("./audio/main-theme.mp3");
+  const deathTheme = new Audio("./audio/death-theme.mp3");
   function startGame() {
     game.start();
-    this.introTheme.pause();
-    this.mainTheme.volume = 0.2;
-    this.mainTheme.play();
+
+    mainTheme.volume = 0.2;
+    mainTheme.play();
   }
   startButton.addEventListener("click", () => {
     startGame();
@@ -21,7 +19,7 @@ window.addEventListener("load", () => {
 
   // The function that reloads the page to start a new game
   function restartGame() {
-    this.deathTheme.pause();
+    deathTheme.pause();
     location.reload();
   }
 

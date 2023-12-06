@@ -6,15 +6,14 @@ class Bullet {
 
     this.width = 20;
     this.height = 8;
-    this.color = "red";
 
     this.element = document.createElement("div");
     this.element.style.position = "absolute";
     this.element.style.width = `${this.width}px`;
     this.element.style.height = `${this.height}px`;
-    this.element.style.backgroundColor = this.color;
-
-    this.element.style.left = `${this.left}px`;
+    this.element.style.backgroundColor = "#e8a41c";
+    this.element.style.borderRadius = "40px";
+    this.element.style.left = `${this.left + 500}px`;
     this.element.style.top = `${this.top + 95}px`;
   }
   isBulletOffScreen() {

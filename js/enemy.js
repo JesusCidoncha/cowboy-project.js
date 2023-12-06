@@ -2,20 +2,26 @@ class Enemy {
   constructor(gameScreen, spawnFromLeft) {
     this.gameScreen = gameScreen;
     this.spawnFromLeft = spawnFromLeft;
-
     // Initialize other properties
-    this.top = 550;
+    this.top = 450;
     this.height = 280;
-    this.width = 230;
+    this.width = 250;
     this.left = this.spawnFromLeft ? -this.width : this.gameScreen.offsetWidth;
+    const possibleBackgrounds = ["zombie1.gif", "zombie2.gif", "zombie3.gif"];
 
+    // Randomly select a background from the array
+    const randomIndex = Math.floor(Math.random() * possibleBackgrounds.length);
+    const selectedBackground = possibleBackgrounds[randomIndex];
     // Create the HTML element
     this.element = document.createElement("div");
     this.element.style.position = "absolute";
     this.element.style.height = `${this.height}px`;
     this.element.style.width = `${this.width}px`;
     this.element.style.top = `${this.top}px`;
-    this.element.style.backgroundColor = "blue";
+    this.element.style.backgroundImage = `url(../images/${selectedBackground})`;
+    this.element.style.backgroundSize = "cover";
+    this.element.style.backgroundRepeat = "no-repeat";
+    this.element.style.backgroundPosition = "center";
 
     this.element.style.left = `${this.left}px`;
 
@@ -25,14 +31,16 @@ class Enemy {
   move() {
     if (this.spawnFromLeft) {
       // Move to the right if spawned from the left
-      this.left += 1;
+      this.left += 2.5;
     } else {
       // Move to the left if spawned from the right
-      this.left -= 1;
+      this.left -= 2.5;
+      this.element.style.backgroundPositionX = "100%";
+      this.element.style.transform = "scaleX(-1)";
+      this.element.style.backgroundPosition = "center";
     }
 
     this.element.style.left = `${this.left}px`;
-    console.log("Left:", this.left);
   }
   updatePosition() {
     this.element.style.left = `${this.left}px`;

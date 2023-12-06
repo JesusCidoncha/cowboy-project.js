@@ -12,6 +12,7 @@ class Game {
     this.lives = 3;
     this.isGameOver = false;
     this.bulletController = null;
+    this.deathTheme = new Audio("./audio/death-theme.mp3");
   }
 
   start() {
@@ -19,7 +20,7 @@ class Game {
     this.gameScreen.style.display = "block";
     this.gameScreen.style.height = `${this.height}vh`;
     this.gameScreen.style.width = `${this.width}vw`;
-
+    document.getElementById("stats-container").style.display = "block";
     this.bulletController = new BulletController(this.gameScreen);
     this.player = new Player(this.gameScreen, this.bulletController);
 
@@ -29,7 +30,7 @@ class Game {
     this.player.move();
     this.bulletController.moveBullets(this.enemies);
     const nextEnemies = [];
-
+    document.getElementById("score").innerText = `${this.score}`;
     this.enemies.forEach((currentEnemy) => {
       currentEnemy.move();
 
@@ -45,8 +46,11 @@ class Game {
 
           if (this.lives === 0) {
             this.isGameOver = true;
+            this.introTheme.pause();
+            this.deathTheme.play();
             this.gameScreen.style.display = "none";
             this.gameEndScreen.style.display = "block";
+            document.getElementById("stats-container").style.display = "none";
           }
         } else {
           nextEnemies.push(currentEnemy);
@@ -60,8 +64,7 @@ class Game {
 
     this.enemies = nextEnemies;
 
-    if (this.animateId % 130 === 0) {
-      console.log("Spawning new enemy");
+    if (this.animateId % 150 === 0) {
       const spawnFromLeft = Math.random() < 0.5;
       this.enemies.push(new Enemy(this.gameScreen, spawnFromLeft));
     }

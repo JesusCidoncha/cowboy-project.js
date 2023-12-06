@@ -14,12 +14,14 @@
         <img src="./images/logo.png" alt="" class="logo-img" />
         <br />
         <button id="start-button">Let`s Start!</button>
-        <p>Use the left and right arrow to control the car!</p>
+        <p>
+          Use the arrow keys or "a" and "d" to move. Use the spacebar to shoot.
+        </p>
         <img src="./images/arrows.png" alt="" class="arrows-img" />
       </div>
 
       <div id="game-container">
-        <div>
+        <div id="stats-container">
           <h2>Stats</h2>
           <p>Score: <span id="score">0</span></p>
           <p>Lives: <span id="lives">3</span></p>
@@ -31,7 +33,7 @@
       <!-- #game-end is initially hidden using CSS style display: none -->
       <div id="game-end">
         <img src="./images/logo.png" alt="" class="logo-img" />
-        <h1>Game Over</h1>
+        <h1>YOU DIED</h1>
         <br />
         <button id="restart-button">Restart</button>
       </div>

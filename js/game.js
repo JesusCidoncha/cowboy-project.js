@@ -3,6 +3,7 @@ class Game {
     this.startScreen = document.getElementById("game-intro");
     this.gameScreen = document.getElementById("game-screen");
     this.gameEndScreen = document.getElementById("game-end");
+    this.damageSound = new Audio("./audio/damage-sound.mp3");
     this.height = 100;
     this.width = 100;
     this.player = null;
@@ -40,13 +41,13 @@ class Game {
       ) {
         if (this.player.didCollide(currentEnemy)) {
           this.lives -= 1;
+          this.damageSound.play();
           document.getElementById("lives").innerText = `${this.lives}`;
           currentEnemy.element.remove();
 
           if (this.lives === 0) {
             this.isGameOver = true;
-            mainTheme.pause();
-            deathTheme.play();
+
             this.gameScreen.style.display = "none";
             this.gameEndScreen.style.display = "block";
             document.getElementById("stats-container").style.display = "none";

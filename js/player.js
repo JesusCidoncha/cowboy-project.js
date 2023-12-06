@@ -8,7 +8,6 @@ class Player {
     this.width = 230;
     this.directionX = 0;
     this.shootingSound = new Audio("./audio/shot-sound.mp3");
-    this.damageSound = new Audio("./audio/damage-sound.mp3");
     this.element = document.createElement("img");
     this.element.src = "./images/sheriff.avif";
     this.element.style.position = "absolute";
@@ -55,7 +54,7 @@ class Player {
   didCollide(enemy) {
     const playerRect = this.element.getBoundingClientRect();
     const enemyRect = enemy.element.getBoundingClientRect();
-    this.damageSound.play();
+
     return (
       playerRect.left < enemyRect.right &&
       playerRect.right > enemyRect.left &&

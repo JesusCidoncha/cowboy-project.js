@@ -7,17 +7,12 @@ class Enemy {
     this.height = 280;
     this.width = 250;
     this.left = this.spawnFromLeft ? -this.width : this.gameScreen.offsetWidth;
-    const possibleSounds = [
-      "zombie-sound1.mp3",
-      "zombie-sound2.mp3",
-      "zombie-sound3.mp3",
-    ];
+
     const possibleBackgrounds = ["zombie1.gif", "zombie2.gif", "zombie3.gif"];
 
     // Randomly select a background from the array
-    const randomSound = Math.floor(Math.random() * possibleSounds.length);
-    const zombieTheme = possibleSounds[randomSound];
-    this.zombieNoise = new Audio(`./audio/${zombieTheme}`);
+
+    this.zombieNoise = new Audio(`./audio/zombie-sound1.mp3`);
     const randomIndex = Math.floor(Math.random() * possibleBackgrounds.length);
     const selectedBackground = possibleBackgrounds[randomIndex];
     // Create the HTML element
@@ -37,7 +32,6 @@ class Enemy {
   }
 
   move() {
-    this.zombieNoise.play();
     if (this.spawnFromLeft) {
       // Move to the right if spawned from the left
       this.left += 2.5;

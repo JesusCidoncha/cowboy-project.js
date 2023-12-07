@@ -12,7 +12,9 @@ class Enemy {
 
     // Randomly select a background from the array
 
-    this.zombieNoise = new Audio(`./audio/zombie-sound1.mp3`);
+    this.zombieSoundLeft = new Audio("./audio/zombie-sound1.mp3");
+    this.zombieSoundRight = new Audio("./audio/zombie-sound2.mp3");
+    this.zombieSoundHit = new Audio("./audio/zombie-sound3.mp3");
     const randomIndex = Math.floor(Math.random() * possibleBackgrounds.length);
     const selectedBackground = possibleBackgrounds[randomIndex];
     // Create the HTML element
@@ -33,10 +35,12 @@ class Enemy {
 
   move() {
     if (this.spawnFromLeft) {
+      this.zombieSoundLeft.play();
       // Move to the right if spawned from the left
       this.left += 2.5;
     } else {
       // Move to the left if spawned from the right
+      this.zombieSoundRight.play();
       this.left -= 2.5;
       this.element.style.backgroundPositionX = "100%";
       this.element.style.transform = "scaleX(-1)";
@@ -60,6 +64,7 @@ class Enemy {
       bulletRect.bottom > enemyRect.top;
 
     if (isColliding) {
+      this.zombieSoundHit.play();
       this.element.style.display = "none";
 
       return true;

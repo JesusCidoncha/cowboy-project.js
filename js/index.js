@@ -43,6 +43,14 @@ window.addEventListener("load", () => {
       game.player.shoot();
       game.bulletController.isSpacebarPressed = true;
     }
+    if (event.code === "KeyM") {
+      game.player.element.style.backgroundImage =
+        "url(./images/intro-background.jpg)";
+    }
+    if (event.code === "KeyÑ") {
+      game.player.element.style.backgroundImage =
+        "url(./images/pedro-sanchez.png)";
+    }
   });
 
   document.addEventListener("keyup", (event) => {

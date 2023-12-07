@@ -13,7 +13,6 @@ class Enemy {
     // Randomly select a background from the array
 
     this.zombieSoundLeft = new Audio("./audio/zombie-sound1.mp3");
-    this.zombieSoundRight = new Audio("./audio/zombie-sound2.mp3");
     this.zombieSoundHit = new Audio("./audio/zombie-sound3.mp3");
     const randomIndex = Math.floor(Math.random() * possibleBackgrounds.length);
     const selectedBackground = possibleBackgrounds[randomIndex];
@@ -40,7 +39,6 @@ class Enemy {
       this.left += 2.5;
     } else {
       // Move to the left if spawned from the right
-      this.zombieSoundRight.play();
       this.left -= 2.5;
       this.element.style.backgroundPositionX = "100%";
       this.element.style.transform = "scaleX(-1)";

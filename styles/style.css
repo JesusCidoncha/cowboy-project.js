@@ -60,7 +60,7 @@ body {
 
 #game-intro p,
 #final-time {
-  font-size: 24px;
+  font-size: 28px;
   font-family: "Verdana";
   font-weight: bold;
   text-shadow: #fc0 1px 0 10px;
@@ -87,7 +87,7 @@ body button {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 70px;
   color: red;
   text-shadow: black 1px 0 10px;
   font-family: "Verdana";

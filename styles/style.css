@@ -57,7 +57,8 @@ body {
   background-size: cover;
 }
 
-#game-intro p {
+#game-intro p,
+#final-time {
   font-size: 24px;
   font-family: "Verdana";
   font-weight: bold;

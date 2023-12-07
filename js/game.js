@@ -9,7 +9,7 @@ class Game {
     this.player = null;
     this.enemies = [];
     this.animateId = null;
-    this.score = 0;
+    this.time = 0;
     this.lives = 3;
     this.isGameOver = false;
     this.bulletController = null;
@@ -23,14 +23,15 @@ class Game {
     document.getElementById("stats-container").style.display = "block";
     this.bulletController = new BulletController(this.gameScreen);
     this.player = new Player(this.gameScreen, this.bulletController);
-
+    this.time = 0;
     this.gameLoop();
   }
   gameLoop() {
     this.player.move();
     this.bulletController.moveBullets(this.enemies);
     const nextEnemies = [];
-    document.getElementById("score").innerText = `${this.score}`;
+    this.time += 1;
+    document.getElementById("time").innerText = `${this.time / 100}`;
     this.enemies.forEach((currentEnemy) => {
       currentEnemy.move();
 
@@ -50,6 +51,9 @@ class Game {
 
             this.gameScreen.style.display = "none";
             this.gameEndScreen.style.display = "block";
+            document.getElementById("final-time").innerText = `Final Time: ${
+              this.time / 100
+            }s`;
             document.getElementById("stats-container").style.display = "none";
           }
         } else {
@@ -57,14 +61,12 @@ class Game {
         }
       } else {
         currentEnemy.element.remove();
-        this.score += 10;
-        document.getElementById("score").innerText = `${this.score}`;
       }
     });
 
     this.enemies = nextEnemies;
 
-    if (this.animateId % 150 === 0) {
+    if (this.animateId % 120 === 0) {
       const spawnFromLeft = Math.random() < 0.5;
       this.enemies.push(new Enemy(this.gameScreen, spawnFromLeft));
     }

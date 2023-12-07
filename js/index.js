@@ -45,7 +45,7 @@ window.addEventListener("load", () => {
     }
     if (event.code === "KeyM") {
       game.player.element.style.backgroundImage =
-        "url(./images/intro-background.jpg)";
+        "url(./images/ironman-eg.png)";
     }
     if (event.code === "KeyÑ") {
       game.player.element.style.backgroundImage =

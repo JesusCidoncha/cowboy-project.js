@@ -3,7 +3,7 @@ class Enemy {
     this.gameScreen = gameScreen;
     this.spawnFromLeft = spawnFromLeft;
     // Initialize other properties
-    this.top = 700;
+    this.top = 550;
     this.height = 280;
     this.width = 250;
     this.left = this.spawnFromLeft ? -this.width : this.gameScreen.offsetWidth;

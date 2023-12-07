@@ -4,6 +4,7 @@ window.addEventListener("load", () => {
   const game = new Game();
   const mainTheme = new Audio("./audio/main-theme.mp3");
   const deathTheme = new Audio("./audio/death-theme.mp3");
+  const clickSound = new Audio("./audio/gun-click.mp3");
   function startGame() {
     game.start();
 
@@ -11,9 +12,11 @@ window.addEventListener("load", () => {
     mainTheme.play();
   }
   startButton.addEventListener("click", () => {
+    clickSound.play();
     startGame();
   });
   restartButton.addEventListener("click", () => {
+    clickSound.play();
     restartGame();
   });
 

@@ -1,8 +1,8 @@
 class Player {
   constructor(gameScreen, bulletController) {
     this.gameScreen = gameScreen;
-    this.left = 650;
-    this.top = 700;
+    this.left = 750;
+    this.top = 550;
     this.bulletController = bulletController;
     this.height = 280;
     this.width = 230;

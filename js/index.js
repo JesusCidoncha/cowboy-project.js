@@ -47,10 +47,6 @@ window.addEventListener("load", () => {
       game.player.element.style.backgroundImage =
         "url(./images/ironman-eg.png)";
     }
-    if (event.code === "KeyÑ") {
-      game.player.element.style.backgroundImage =
-        "url(./images/pedro-sanchez.png)";
-    }
   });
 
   document.addEventListener("keyup", (event) => {

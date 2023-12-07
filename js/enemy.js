@@ -35,7 +35,7 @@ class Enemy {
   move() {
     if (this.spawnFromLeft) {
       this.zombieSoundLeft.play();
-      this.zombieSoundLeft.volume = 0.5;
+      this.zombieSoundLeft.volume = 0.3;
       // Move to the right if spawned from the left
       this.left += 2.5;
     } else {

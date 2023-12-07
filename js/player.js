@@ -29,7 +29,7 @@ class Player {
   shoot() {
     const speed = 5;
     const delay = 7;
-    this.shootingSound.volume = 0.5;
+    this.shootingSound.volume = 0.7;
     this.shootingSound.currentTime = 0;
     this.shootingSound.play();
     // Determine the direction of the bullet based on the player's orientation

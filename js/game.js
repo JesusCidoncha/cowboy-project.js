@@ -66,7 +66,7 @@ class Game {
 
     this.enemies = nextEnemies;
 
-    if (this.animateId % 120 === 0) {
+    if (this.animateId % 60 === 0) {
       const spawnFromLeft = Math.random() < 0.5;
       this.enemies.push(new Enemy(this.gameScreen, spawnFromLeft));
     }
